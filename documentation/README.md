@@ -1,1 +1,1 @@
-<img src="manual cover EN.jpg"/>
+<img src="manuel cover EN.jpg"/>
