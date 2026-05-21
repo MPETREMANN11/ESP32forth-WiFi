@@ -18,5 +18,4 @@ RECORDFILE /spiffs/config.fs
 z" Livebox-1390L"      constant WIFI_SSID
 z" z4S3RuPgdopjekrNQC" constant WIFI_PSWD
 
-
 <EOF>

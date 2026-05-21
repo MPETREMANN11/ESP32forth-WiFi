@@ -2,7 +2,7 @@
 \ Manage wifi with IPv6
 \    Filename:      wifiManage.fs
 \    Date:          22 apr 2026
-\    Updated:       22 apr 2026
+\    Updated:       21 may 2026
 \    File Version:  1.0
 \    MCU:           ESP32
 \    Forth:         ESP32forth all versions 7.x++
@@ -40,6 +40,21 @@ also wifi
     cr
   ;
 
+\ display encryption, n is encryption number returned by
+: decode-encryption  ( n -- addr len )
+    case
+        0 of s" Open " endof
+        1 of s" WEP  " endof
+        2 of s" WPA  " endof
+        3 of s" WPA2 " endof
+        4 of s" WPAx " endof
+        5 of s" ENT  " endof
+        6 of s" WPA3 " endof
+        7 of s" WP3x " endof
+        drop s" ???? " 
+    endcase
+  ;
+
 \ wait for wifi connection
 : wait-wifi ( -- )
     begin
@@ -60,17 +75,17 @@ also wifi
         100 ms 
     repeat \ Attente WiFi connecté
     
-    WiFi.enableIPv6 drop \ Active l'IPv6 (renvoie vrai/faux)
+\     WiFi.enableIPv6 drop \ Active l'IPv6 (renvoie vrai/faux)
     ." IPv4: " WiFi.localIP . cr
     
     \ On attend que l'adresse IPv6 soit assignée par le routeur
-    begin 
-        WiFi.linkLocalIPv6 ( addr len ) 
-        dup 0= 
-    while 
-        2drop 500 ms 
-    repeat
-    ." IPv6: " type cr
+\     begin 
+\         WiFi.linkLocalIPv6 ( addr len ) 
+\         dup 0= 
+\     while 
+\         2drop 500 ms 
+\     repeat
+\     ." IPv6: " type cr
   ;
 
 <EOF>
